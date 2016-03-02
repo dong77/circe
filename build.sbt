@@ -406,12 +406,12 @@ lazy val publishSettings = Seq(
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
   publishTo := {
-    val nexus = "https://oss.sonatype.org/"
-    if (isSnapshot.value)
-      Some("snapshots" at nexus + "content/repositories/snapshots")
-    else
-      Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+     if (isSnapshot.value)
+       Some("Snapshots" at "http://192.168.2.2:8081/nexus/content/repositories/snapshots")
+     else
+       Some("Releases" at "http://192.168.2.2:8081/nexus/content/repositories/releases")
   },
+  credentials += Credentials(Path.userHome / ".sbt" / ".credentials"),
   autoAPIMappings := true,
   apiURL := Some(url("https://travisbrown.github.io/circe/api/")),
   scmInfo := Some(
